@@ -13,7 +13,7 @@ exports.userFile = ((req, res, next) => {
         const extension = getFileType(file)
 
         const filename = `${Date.now()}-${Math.round(Math.random() * 1E9)}.${extension}`
-        console.log("🚀 ~ file: fileUpload.js ~ line 16 ~ generateFilename ~ filename", filename)
+        
         cb(null, file.fieldname + '-' + filename)
     }
 

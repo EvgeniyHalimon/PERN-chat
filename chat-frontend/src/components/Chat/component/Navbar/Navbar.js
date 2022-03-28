@@ -1,20 +1,19 @@
 import React, {Fragment, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {logout} from '../../../../store/actions/auth'
+import {logout, updateProfile} from '../../../../store/actions/auth'
 import './Navbar.scss'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import Modal from '../../../Modal/Modal';
 
 const Navbar = () => {
     const user = useSelector(state => state.authReducer.user)
-    console.log(user)
 
     const [firstName, setFirstName] = useState(user.firstName)
     const [lastName, setLastName] = useState(user.lastName)
     const [email, setEmail] = useState(user.email)
     const [gender, setGender] = useState(user.gender)
-    const [password, setPassword] = useState(user.password)
-    const [avatar, setAvatar] = useState(user.avatar)
+    const [password, setPassword] = useState('')
+    const [avatar, setAvatar] = useState('')
 
     const [profileOptions, setProfileOptions] = useState(false)
     const [profileModal, setProfileModal] = useState(false)
@@ -24,13 +23,19 @@ const Navbar = () => {
     const submitForm =  async (e) => {
         e.preventDefault()
         
-        const form = {firstName, lastName, email, gender, password, avatar}
+        const form = {firstName, lastName, email, gender, avatar}
+        
+        if(password.length > 0) form.password = password
 
         const formData = new FormData()
 
         for(const key in form){
-            formData.append(key, form[key])
+            console.log(key, form[key])
+            formData.append(key, form[key])   
         }
+
+        console.log(formData)
+        dispatch(updateProfile(formData)).then(() => setProfileModal(false))
     }
 
     return(
@@ -122,13 +127,13 @@ const Navbar = () => {
                                         type="file" 
                                     />
                                 </div>
-                                <button>REGISTER</button>
                             </form>
                         </Fragment>
 
                         <Fragment key='footer'>
                             <button
                                 className='btn-success'
+                                onClick={submitForm}
                             >
                                 UPDATE
                             </button>

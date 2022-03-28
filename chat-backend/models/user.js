@@ -27,8 +27,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       get() {
         const avatar = this.getDataValue('avatar')
-        console.log(avatar, '*---*')
-        const url = `${config.appUrl}:${config.appPort}`
+        
+        const url = `${config.appUrl}`
 
         if(!avatar) {
           return `/${this.getDataValue('gender')}.svg`

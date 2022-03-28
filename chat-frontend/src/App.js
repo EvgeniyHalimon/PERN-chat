@@ -16,7 +16,6 @@ library.add(faSmile, faImage, faSpinner, faEllipsisV, faUserPlus, faSignOutAlt, 
 function App() {
 
   const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn)
-  console.log("🚀 ~ file: App.js ~ line 13 ~ App ~ isLoggedIn", isLoggedIn)
   
   return (
     <BrowserRouter>

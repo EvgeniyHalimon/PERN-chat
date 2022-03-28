@@ -7,7 +7,7 @@ exports.update = async (req, res) => {
         req.body.avatar = req.file.filename
     }
 
-    if(typeof req.body.avatar !== 'undefined')
+    if(typeof req.body.avatar !== 'undefined' && req.body.avatar.length === 0) delete req.body.avatar
 
     try {
         console.log(req.body, 'vkid')
