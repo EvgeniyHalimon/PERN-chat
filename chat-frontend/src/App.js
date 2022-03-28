@@ -7,9 +7,16 @@ import PageNotFound from './components/404/PageNotFound';
 import ProtectedRoute from './Router/ProtectedRoute';
 import {useSelector} from 'react-redux'
 
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {faSmile, faImage} from '@fortawesome/free-regular-svg-icons'
+import {faSpinner, faEllipsisV, faUserPlus, faSignOutAlt, faTrash, faCaretDown, faUpload, faTimes, faBell} from '@fortawesome/free-solid-svg-icons'
+library.add(faSmile, faImage, faSpinner, faEllipsisV, faUserPlus, faSignOutAlt, faTrash, faCaretDown, faUpload, faTimes, faBell)
+
+
 function App() {
 
   const isLoggedIn = useSelector(state => state.authReducer.isLoggedIn)
+  console.log("🚀 ~ file: App.js ~ line 13 ~ App ~ isLoggedIn", isLoggedIn)
   
   return (
     <BrowserRouter>

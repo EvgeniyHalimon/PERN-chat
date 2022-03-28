@@ -17,13 +17,12 @@ exports.login = async (req, res) => {
         if(!bcrypt.compareSync(password, user.password)) return res.status(401).json({message: 'Incorrect password'})
 
         const userWithToken = generateToken(user.get({raw : true}))
-
+        userWithToken.user.avatar = user.avatar
         return res.send(userWithToken)
+
     } catch (err) {
         return res.status(500).json({message : err.message})
     }
-
-    return res.send([email, password])
 }
 
 exports.register = async (req, res) => {
@@ -44,5 +43,5 @@ const generateToken = (user) => {
 
     const token = jwt.sign(user, config.appKey, {expiresIn : 36000})
 
-    return {...user, ...{token}}
+    return {...{user}, ...{token}}
 }

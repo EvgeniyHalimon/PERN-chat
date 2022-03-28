@@ -2,8 +2,6 @@ import React , {useState} from 'react';
 import './Auth.scss';
 import loginImage from '../../assets/images/login.svg';
 import {Link, useNavigate} from 'react-router-dom';
-import axios from 'axios'
-import AuthService from '../../services/authServices'
 import {useDispatch} from 'react-redux'
 import {login} from '../../store/actions/auth'
 
