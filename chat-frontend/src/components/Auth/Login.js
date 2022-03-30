@@ -15,7 +15,7 @@ const Login = () => {
         e.preventDefault()
         try {
             dispatch(login({email, password}))
-            navigate('/')
+            navigate('/', { replace: true })
         } catch (err) {
             console.log(err)
         }

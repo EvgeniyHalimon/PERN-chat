@@ -29,7 +29,7 @@ exports.register = async (req, res) => {
 
     try {
         const user = await User.create(req.body)
-        
+
         const userWithToken = generateToken(user.get({raw : true}))
 
         return res.send(userWithToken)

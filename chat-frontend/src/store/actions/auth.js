@@ -1,10 +1,6 @@
 import AuthService from "../../services/authServices";
+import { LOGIN, LOGOUT, REGISTER, UPDATE_PROFILE } from "../../services/action-types";
 
-export const LOGIN = 'LOGIN'
-export const REGISTER = 'REGISTER'
-export const LOGOUT = 'LOGOUT'
-export const UPDATE_PROFILE = 'UPDATE_PROFILE'
- 
 export const login = (params) => dispatch => {
     return AuthService.login(params)
         .then(data => {

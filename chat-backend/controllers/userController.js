@@ -10,7 +10,6 @@ exports.update = async (req, res) => {
     if(typeof req.body.avatar !== 'undefined' && req.body.avatar.length === 0) delete req.body.avatar
 
     try {
-        console.log(req.body, 'vkid')
         const [rows, result] =  await User.update(req.body, 
             {
                 where : {

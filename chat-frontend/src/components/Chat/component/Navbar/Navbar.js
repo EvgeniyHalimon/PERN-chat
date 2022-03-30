@@ -4,9 +4,11 @@ import {logout, updateProfile} from '../../../../store/actions/auth'
 import './Navbar.scss'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import Modal from '../../../Modal/Modal';
+import { mainUrl } from '../../../../constants/constants';
 
 const Navbar = () => {
     const user = useSelector(state => state.authReducer.user)
+    console.log(user.avatar)
 
     const [firstName, setFirstName] = useState(user.firstName)
     const [lastName, setLastName] = useState(user.lastName)
@@ -45,7 +47,7 @@ const Navbar = () => {
                 id='profile-menu'
                 onClick={() => setProfileOptions(!profileOptions)}
             >
-                <img width={40} height={40} src={user.avatar} alt={`${user.firstName}-avatar`} />
+                <img width={40} height={40} src={`${user.avatar}`} alt={`${user.firstName}-avatar`} />
                 <p>{user.firstName}</p>
                 <FontAwesomeIcon 
                     icon='caret-down'
@@ -123,8 +125,9 @@ const Navbar = () => {
                                 </div>
                                 <div className='input-field m-2'>
                                     <input 
-                                        onChange={e => setAvatar(e.target.value)}
+                                        onChange={e => setAvatar(e.target.files[0])}
                                         type="file" 
+                                        multiple
                                     />
                                 </div>
                             </form>
